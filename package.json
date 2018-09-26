@@ -1,5 +1,5 @@
 {
-  "name": "types_restaurant",
+  "name": "@types/types_restaurant",
   "version": "1.0.0",
   "description": "types_restaurant",
   "main": "index.js",
