@@ -1,0 +1,15 @@
+{
+  "name": "types_restaurant",
+  "version": "1.0.0",
+  "description": "types_restaurant",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.code.oa.com/timi-n1/types_restaurant.git"
+  },
+  "author": "aguangtian",
+  "license": "ISC"
+}
