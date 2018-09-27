@@ -1,7 +1,7 @@
 /**
  * 顾客info
  */
-declare interface Custom{
+declare interface Guest{
     id: number,
     name: string,
     ename: string,
