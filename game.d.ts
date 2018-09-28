@@ -25,29 +25,6 @@ declare interface cat_category_config {
     anima_list: number[]
 }
 
-
-declare interface guest_list_config {
-    id: number,
-    name: string,
-    ename: string,
-    desc: string,
-    story: number[]
-}
-
-/**
- * 后台返回的顾客的数据
- */
-
-declare interface GuestData {
-    guest_id: number,
-    is_new_come: boolean,
-    is_new_story: boolean,
-    position_id: number,
-    menu: number,
-    guestData: guest_list_config
-}
-
-
 /**
  * 后台返回的猫的数据
  */
@@ -132,20 +109,6 @@ declare interface task_config {
 }
 
 declare interface cat_pos_in_yard {
-    name: string,
-    x: number,
-    y: number,
-    id: number
-}
-
-declare interface guest_pososition {
-    name: string,
-    x: number,
-    y: number,
-    id: number
-}
-
-declare interface food_position {
     name: string,
     x: number,
     y: number,
