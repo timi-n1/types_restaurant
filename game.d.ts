@@ -1,6 +1,6 @@
 
 
-declare interface anima_config{
+declare interface anima_config {
     id: number,
     name: string,
     desc: string,
@@ -10,7 +10,7 @@ declare interface anima_config{
     sampleCatId?: number
 }
 
-declare interface cat_category_config{
+declare interface cat_category_config {
     id: number,
     name: string,
     ename: string,
@@ -24,6 +24,29 @@ declare interface cat_category_config{
     modern: number,
     anima_list: number[]
 }
+
+
+declare interface guest_list_config {
+    id: number,
+    name: string,
+    ename: string,
+    desc: string,
+    story: number[]
+}
+
+/**
+ * 后台返回的顾客的数据
+ */
+
+declare interface GuestData {
+    guest_id: number,
+    is_new_come: boolean,
+    is_new_story: boolean,
+    position_id: number,
+    menu: number,
+    guestData: guest_list_config
+}
+
 
 /**
  * 后台返回的猫的数据
@@ -70,14 +93,14 @@ declare interface CatData {
     is_new?: boolean
 }
 
-declare interface YardScrollData{
-    type:ScrollType,
-    pos_id:number,
-    uid?:number,
-    fromtask?:boolean
+declare interface YardScrollData {
+    type: any,
+    pos_id: number,
+    uid?: number,
+    fromtask?: boolean
 }
 
-declare interface goods_config{
+declare interface goods_config {
     pid: number,
     type: number,
     price: number,
@@ -93,7 +116,7 @@ declare interface goods_config{
     modern: number
 }
 
-declare interface task_config{
+declare interface task_config {
     id: number,
     type: number,
     icon: string,
@@ -108,14 +131,28 @@ declare interface task_config{
     complete3: string
 }
 
-declare interface cat_pos_in_yard{
+declare interface cat_pos_in_yard {
     name: string,
     x: number,
     y: number,
     id: number
 }
 
-declare interface furniture_pos_in_yard{
+declare interface guest_pososition {
+    name: string,
+    x: number,
+    y: number,
+    id: number
+}
+
+declare interface food_position {
+    name: string,
+    x: number,
+    y: number,
+    id: number
+}
+
+declare interface furniture_pos_in_yard {
     name: string,
     x: number,
     y: number,
@@ -126,36 +163,36 @@ declare interface furniture_pos_in_yard{
     id: number
 }
 
-declare interface toy_pos_in_yard{
+declare interface toy_pos_in_yard {
     name: string,
     x: number,
     y: number,
     id: number
 }
 
-declare interface item_furniture{
+declare interface item_furniture {
     pid: number,
     sub_type: number,
     in_yard: boolean
 }
 
-declare interface item_toy{
+declare interface item_toy {
     pid: number,
     in_yard: boolean,
     using: boolean
 }
 
-declare interface furniture_in_yard{
+declare interface furniture_in_yard {
     pid: number,
     sub_type: number
 }
 
-declare interface toy_in_yard{
+declare interface toy_in_yard {
     pid: number,
     position_id: number
 }
 
-declare interface food_in_yard{
+declare interface food_in_yard {
     pid: number,
     rest_food: number,
     buy_time: number,
@@ -163,7 +200,7 @@ declare interface food_in_yard{
     part_time: number
 }
 
-declare interface notice_data{
+declare interface notice_data {
     noticeStartTime: 0,     //公告显示的起始时间
     updateStartTime: 0,     //更新维护的起始时间
     updateEndTime: 0,   //更新维护的结束时间
