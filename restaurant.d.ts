@@ -1,10 +1,11 @@
 
 //====================================== config ==================================*/
-declare interface guest_list_config {
+declare interface guest_config {
     id: number,
     name: string,
     ename: string,
     desc: string,
+    intimacy: number,
     story: number[]
 }
 
@@ -17,7 +18,7 @@ declare interface GuestData {
     is_new_story: boolean,
     position_id: number,
     menu: number,
-    guestData: guest_list_config
+    guestData: guest_config
 }
 
 declare interface furniture_config {
