@@ -18,6 +18,7 @@ declare interface GuestData {
     is_new_story: boolean,
     position_id: number,
     menu: number,
+    uid: number,
     guestData: guest_config
 }
 
