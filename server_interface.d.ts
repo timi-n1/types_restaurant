@@ -66,6 +66,12 @@ declare interface req_guest_booking extends BaseRequest {
     rid: string
 }
 
+declare interface req_guest_food_ready extends BaseRequest {
+    fid: number,
+    guest_id: number,
+    rid: string
+}
+
 declare interface BaseResponse {
     ret: number,
     msg?: string
@@ -125,7 +131,7 @@ declare interface res_guest_cook extends BaseResponse {
     data: {
         money: number,
         stamina: number,
-        favorability: number
+        intimacy: number
     }
 }
 
@@ -136,7 +142,7 @@ declare interface res_guest_list extends BaseResponse {
             is_new_come: boolean,
             is_new_story: boolean,
             position_id: number,
-            menu: number
+            fid: number
         }[]
     }
 }
@@ -151,7 +157,7 @@ declare interface res_guest_category extends BaseResponse {
     data: {
         list: {
             guest_id: number,
-            favorability: number
+            intimacy: number
         }[]
     }
 }
@@ -161,7 +167,15 @@ declare interface res_guest_exposure extends BaseResponse {
 }
 
 declare interface res_guest_booking extends BaseResponse {
-    data: {}
+    data: {
+        fid?: number
+    }
+}
+
+declare interface res_guest_food_ready extends BaseResponse {
+    data: {
+        story_index?: number
+    }
 }
 
 declare const enum ServerInterFace {
@@ -194,4 +208,5 @@ declare const enum ServerInterFace {
     guest_story = 'guest_story',
     guest_exposure = 'guest_exposure',
     guest_booking = 'guest_booking',
+    guest_food_ready = 'guest_food_ready'
 } 
