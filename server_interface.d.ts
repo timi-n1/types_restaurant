@@ -23,7 +23,7 @@ declare interface req_furniture_buy extends BaseRequest {
 }
 
 declare interface req_furniture_list extends BaseRequest {
-    yard_id: string
+    rid: string
 }
 
 declare interface req_food_buy extends BaseRequest {
@@ -31,39 +31,39 @@ declare interface req_food_buy extends BaseRequest {
 }
 
 declare interface req_food_list extends BaseRequest {
-    yard_id: string
+    rid: string
 }
 
 declare interface req_food_supply extends BaseRequest {
     fid: number
-    yard_id: string
+    rid: string
 }
 
 declare interface req_guest_cook extends BaseRequest {
     fid: number
-    type: number
+    guest_id: number
 }
 
 declare interface req_guest_list extends BaseRequest {
-    yard_id: number
-    types?: number[]
+    rid: number
+    guest_ids?: number[]
 }
 
 declare interface req_guest_category extends BaseRequest {    
 }
 
 declare interface req_guest_story extends BaseRequest {
-    type: number
+    guest_id: number
 }
 
 declare interface req_guest_exposure extends BaseRequest {
-    type: number
+    guest_id: number
 }
 
 declare interface req_guest_booking extends BaseRequest {
     fid: number
-    type: number
-    yard_id: string
+    guest_id: number
+    rid: string
 }
 
 declare interface BaseResponse {
@@ -94,7 +94,7 @@ declare interface res_furniture_place extends BaseResponse {
 declare interface res_furniture_list extends BaseResponse {
     data: {
         placed_furniture: number[],
-        my_items: number[]
+        all_furniture: number[]
     }
 }
 
@@ -106,8 +106,12 @@ declare interface res_food_buy extends BaseResponse {
 
 declare interface res_food_list extends BaseResponse {
     data: {
-        cooked_foods: number[],
-        food_material: number[]
+        list: {
+            pid: number,
+            cooked: number,
+            material: number,
+            update_time: Date
+        }[]
     }
 }
 
@@ -128,7 +132,7 @@ declare interface res_guest_cook extends BaseResponse {
 declare interface res_guest_list extends BaseResponse {
     data: {
         list: {
-            type: number,
+            guest_id: number,
             is_new_come: boolean,
             is_new_story: boolean,
             position_id: number,
@@ -146,7 +150,7 @@ declare interface res_guest_story extends BaseResponse {
 declare interface res_guest_category extends BaseResponse {
     data: {
         list: {
-            type: number,
+            guest_id: number,
             favorability: number
         }[]
     }
