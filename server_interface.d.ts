@@ -131,7 +131,7 @@ declare interface res_guest_cook extends BaseResponse {
     data: {
         money: number,
         stamina: number,
-        favorability: number
+        intimacy: number
     }
 }
 
@@ -157,7 +157,7 @@ declare interface res_guest_category extends BaseResponse {
     data: {
         list: {
             guest_id: number,
-            favorability: number
+            intimacy: number
         }[]
     }
 }
