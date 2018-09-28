@@ -23,7 +23,7 @@ declare interface req_furniture_buy extends BaseRequest {
 }
 
 declare interface req_furniture_list extends BaseRequest {
-    yard_id: string
+    rid: string
 }
 
 declare interface req_food_buy extends BaseRequest {
@@ -31,12 +31,12 @@ declare interface req_food_buy extends BaseRequest {
 }
 
 declare interface req_food_list extends BaseRequest {
-    yard_id: string
+    rid: string
 }
 
 declare interface req_food_supply extends BaseRequest {
     fid: number
-    yard_id: string
+    rid: string
 }
 
 declare interface req_guest_cook extends BaseRequest {
@@ -45,7 +45,7 @@ declare interface req_guest_cook extends BaseRequest {
 }
 
 declare interface req_guest_list extends BaseRequest {
-    yard_id: number
+    rid: number
     guest_ids?: number[]
 }
 
@@ -63,7 +63,7 @@ declare interface req_guest_exposure extends BaseRequest {
 declare interface req_guest_booking extends BaseRequest {
     fid: number
     guest_id: number
-    yard_id: string
+    rid: string
 }
 
 declare interface BaseResponse {
