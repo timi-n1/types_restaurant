@@ -83,3 +83,18 @@ declare interface furniture_item {
     sub_type: number,
     in_yard?: boolean
 }
+
+declare interface food_item {
+    pid: number,
+    cooked: number,
+    material: number,
+    update_time: Date,
+    foodData: food_config
+}
+
+//====================================== 图鉴 ==================================*/
+declare interface guestCategory {
+    guest_id: number,
+    intimacy: number,
+    guestData: guest_config
+}
