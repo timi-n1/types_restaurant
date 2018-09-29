@@ -273,7 +273,7 @@ declare interface res_furniture_place {
  */
 declare interface res_furniture_list {
     placed_furniture: number[],
-    all_furniture: number[]
+    my_furniture: number[]
 }
 
 /**
