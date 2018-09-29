@@ -2,81 +2,137 @@
  * 命令字查询接口命名格式
  * req_${cmds}
  * 
- * 命令字回包接口命名格式:
- * res_${cmds}
  */
 
-
-
-
+/**
+ * 曝光故事已读接口
+ * @param {number} [story_index] - 已读故事索引
+ */
 declare interface req_story_read {
     story_index: number
 }
 
+/**
+ * 引导任务完成接口
+ * @param {number} [guide_index] - 引导任务索引值
+ */
 declare interface req_guide_done {
     guide_index: number
 }
 
+/**
+ * 购买家具
+ * @param {number} [pid] - 家具pid
+ */
 declare interface req_furniture_buy {
     pid: number
 }
 
+
+/**
+ * 放置家具
+ * @param {number} [pid] - 家具pid
+ */
 declare interface req_furniture_place {
     pid: number
 }
 
-declare interface req_furniture_buy {
-    pid: number
-}
 
+/**
+ * 拉取家具列表
+ * @param {number} [rid] - 餐厅id（默认与用户openid一致），默认拉取自己的相关信息
+ */
 declare interface req_furniture_list {
-    rid: string
+    rid?: string
 }
 
+/**
+ * 引入菜品
+ * @param {number} [fid] - 菜品id 
+ */
 declare interface req_food_buy {
-    pid: number
+    fid: number
 }
 
+/**
+ * 拉取菜品列表
+ * @param {number} [rid] -  餐厅id（默认与用户openid一致），默认拉取自己的相关信息
+ */
 declare interface req_food_list {
-    rid: string
+    rid?: string
 }
 
+/**
+ * 添加备菜材料
+ * @param {number} [fid] - 菜品id
+ */
 declare interface req_food_supply {
     fid: number
-    rid: string
 }
 
+/**
+ * 为顾客撸菜
+ * @param {number} [guest_id] - 顾客id
+ * @param {number} [fid] - 菜品id
+ * @param {string} [rid] - 默认在自己餐厅，如果在他人餐厅，则需要带此参数
+ */
 declare interface req_guest_cook {
     fid: number
-    guest_id: number
+    guest_id: number,
+    rid?: string
 }
 
+/**
+ * 拉取顾客列表
+ * @param {string} [rid] - 默认在自己餐厅，如果在他人餐厅，则需要带此参数
+ */
 declare interface req_guest_list {
-    rid: number
-    guest_ids?: number[]
+    rid?: number
 }
 
+/**
+ * 顾客图鉴
+ * @param {string} [rid] - 默认在自己餐厅，如果在他人餐厅，则需要带此参数
+ */
 declare interface req_guest_category {
+    rid?: number
 }
 
+/**
+ * 顾客故事站
+ * @param {number} [guest_id] - 顾客id
+ */
 declare interface req_guest_story {
     guest_id: number
 }
 
+
+/**
+ * 曝光某个顾客
+ * @param {number} [guest_id] - 顾客id
+ */
 declare interface req_guest_exposure {
     guest_id: number
 }
 
+/**
+ * 接受订单
+ * @param {number} [fid] - 菜品id
+ * @param {number} [guest_id] -顾客id
+ */
 declare interface req_guest_booking {
     fid: number
     guest_id: number
-    rid: string
 }
 
-declare interface req_guest_food_ready {
+/**
+ * 上菜
+ * @param {number} [fid] - 菜品id
+ * @param {number} [guest_id] -顾客id
+ */
+declare interface req_guest_food_dilivery {
     fid: number,
-    guest_id: number,
-    rid: string
+    guest_id: number
 }
 
 
@@ -127,50 +183,6 @@ declare const enum AppCode {
     buy_fid_not_found = 8200,
 }
 
-declare const enum AppMsg {
-    'pid_not_exist!' = '喵呜，遇到一些问题了', //家具不存在
-    'invalid_operations' = '喵呜，遇到一些问题了', //传入购买家具ID不合法
-    'not_enough_money' = '金币不足！快去讨好喵主子赚点钱吧', //不够钱
-    'fid_not_exist' = '没有该菜品', // 菜品不存在
-    'same_item' = '喵呜，遇到一些问题了',//已经购买过该家具/菜品
-    'wx_auth_err' = '喵呜，遇到一些问题了',//微信登录失败
-    'server_err' = '喵呜，遇到一些问题了',//服务器异常,所有未定义的错误
-}
-
-
-declare interface BaseResponse<T> {
-    ret: AppCode,
-    msg?: AppMsg,
-    data: T
-}
-
-declare interface res_story_read {
-    done: boolean
-}
-
-declare interface res_guide_done {
-    guide_index: number
-}
-
-declare interface res_furniture_buy {
-    done: boolean
-    money: number
-}
-
-declare interface res_furniture_place {
-    done: boolean
-}
-
-declare interface res_furniture_list {
-    placed_furniture: number[],
-    all_furniture: number[]
-}
-
-declare interface res_food_buy {
-    data: {
-        money: number
-    }
-}
 
 
 
@@ -183,7 +195,7 @@ interface eating_food {
 }
 
 /***
- * 顾客相关的基础字段说明:
+ * 顾客模块相关的基础字段说明:
  * @param {number} [story_index] - 顾客解锁到的故事线
  * @param {boolean} [is_read] - 当前故事线是否已读
  * 
@@ -196,10 +208,84 @@ interface eating_food {
  * @param {number} [position_id] - 顾客位置
  * @param {boolean} [is_new] - 是否新来顾客
  * 
+ */
+
+declare const enum AppMsg {
+    'pid_not_exist!' = '喵呜，遇到一些问题了', //家具不存在
+    'invalid_operations' = '喵呜，遇到一些问题了', //传入购买家具ID不合法
+    'not_enough_money' = '金币不足！快去讨好喵主子赚点钱吧', //不够钱
+    'fid_not_exist' = '没有该菜品', // 菜品不存在
+    'same_item' = '喵呜，遇到一些问题了',//已经购买过该家具/菜品
+    'wx_auth_err' = '喵呜，遇到一些问题了',//微信登录失败
+    'server_err' = '喵呜，遇到一些问题了',//服务器异常,所有未定义的错误
+}
+
+
+/**
+ * 基础回包结构:
+ * @param {AppCode} [ret] - 回包响应值，参考枚举AppCode
+ * @param {AppMsg} [msg] - 回包提示消息,参考枚举 AppMsg
+ * @param {T} [data] - 回包数据体，模版参见以 res_${cmd} 为格式的接口
+ * 
+ * @template
+ *      声明 story_read 接口响应回包
+ *      let res:BaseResponse<res_story_read>
  * 
  * 
  */
+declare interface BaseResponse<T> {
+    ret: AppCode,
+    msg?: AppMsg,
+    data: T
+}
 
+/**
+ * 顾客故事阅读完成
+ */
+declare interface res_story_read {
+    done: boolean
+}
+
+/**
+ * 引导任务完成
+ */
+declare interface res_guide_done {
+    guide_index: number
+}
+
+/**
+ * 购买家具
+ */
+declare interface res_furniture_buy {
+    done: boolean
+    money: number
+}
+
+/**
+ * 放置家具
+ */
+declare interface res_furniture_place {
+    done: boolean
+}
+
+/**
+ * 拉取家具信息
+ */
+declare interface res_furniture_list {
+    placed_furniture: number[],
+    all_furniture: number[]
+}
+
+/**
+ * 购买菜品
+ */
+declare interface res_food_buy {
+    money: number
+}
+
+/**
+ * 菜品列表
+ */
 declare interface res_food_list {
     list: {
         fid: number, //菜品id
@@ -210,35 +296,50 @@ declare interface res_food_list {
     }[]
 }
 
+/**
+ * 购买备菜材料
+ */
 declare interface res_food_supply {
     money: number //金币
     done: boolean //购买成功
 }
 
+/**
+ * 为顾客完成一道菜
+ */
 declare interface res_guest_cook {
-    money: number, //金币
     stamina: number, //体力值
-    intimacy: number //亲密度
+    material: number, //剩余材料份额
+    cooked: number //已有备好的菜
 }
 
+/**
+ * 拉取餐厅顾客列表
+ */
 declare interface res_guest_list {
     list: {
         guest_id: number,
         is_new: boolean, //是否第一次出现的顾客
-        story_index: number , //顾客当前最新的故事索引
-        is_read: boolean , //当前故事索引是否已读
-        position_id: number, 
+        story_index: number, //顾客当前最新的故事索引
+        is_read: boolean, //当前故事索引是否已读
+        position_id: number,
         fids: number[], //订单列表
         foods: number[], //已完成的菜品列表
         current_food: eating_food //当前吃的菜
     }[]
 }
 
+/**
+ * 拉取指定顾客故事站
+ */
 declare interface res_guest_story {
     story_index: number, //已解锁到哪个故事
     read: boolean //当前故事是否已读
 }
 
+/**
+ * 拉取顾客图鉴
+ */
 declare interface res_guest_category {
     list: {
         guest_id: number, //顾客角色id
@@ -247,22 +348,31 @@ declare interface res_guest_category {
     }[]
 }
 
+/**
+ * 曝光指定顾客
+ */
 declare interface res_guest_exposure {
     done: boolean
 }
 
 /**
+ * 顾客下订单
  * 下订单可能失败，失败后有可能下发一个新订单
  */
 declare interface res_guest_booking {
     fid?: number //新订单id
-    done: boolean 
+    done: boolean
 }
 
-declare interface res_guest_food_ready {
-    data: {
-        story_index?: number
-    }
+/**
+ * 上菜,得钱，得亲密度
+ * 可能解锁新故事
+ */
+declare interface res_guest_food_delivery {
+    story_index?: number
+    money: number,
+    intimacy: number,
+    done: boolean
 }
 
 declare const enum ServerInterFace {
