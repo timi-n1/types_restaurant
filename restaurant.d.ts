@@ -5,8 +5,10 @@ declare interface guest_config {
     name: string,
     ename: string,
     desc: string,
-    intimacy: number,
-    story: number[]
+    direction: number,
+    story_list: number[],
+    torso_offsetx: number,
+    torso_offsety: number
 }
 
 /**
