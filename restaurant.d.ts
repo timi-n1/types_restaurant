@@ -19,6 +19,9 @@ declare interface GuestData {
     position_id: number,
     menu: number,
     uid: number,
+    book_food_id?: number[],
+    order?: number[],
+    task_id?: number,
     guestData: guest_config
 }
 
