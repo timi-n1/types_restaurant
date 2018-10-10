@@ -15,15 +15,18 @@ declare interface guest_config {
  * 后台返回的顾客的数据
  */
 declare interface GuestData {
+
     guest_id: number,
-    is_new_come: boolean,
-    is_new_story: boolean,
+    is_new: boolean,
+    story_index: number,
+    is_read: boolean,
     position_id: number,
-    menu: number,
-    uid: number,
-    book_food_id?: number[],
-    order?: number[],
-    task_id?: number,
+    intimacy: number,
+    current_order: number,
+    table_foods: number[],
+    book_foods: number[],
+    current_food: object,
+    task_id?: number,    
     guestData: guest_config
 }
 
