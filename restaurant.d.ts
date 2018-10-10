@@ -95,7 +95,7 @@ declare interface food_item {
     pid: number,
     cooked: number,
     material: number,
-    update_time: Date,
+    update_time: number,
     foodData: food_config
 }
 
