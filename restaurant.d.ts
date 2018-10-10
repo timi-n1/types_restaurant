@@ -78,7 +78,9 @@ declare interface furniture_position {
     fixedTop: boolean,
     fixedBottom: boolean,
     zindex: number,
-    id: number
+    id: number,
+    layer: number,
+    multiId: number
 }
 
 //====================================== item ==================================*/
