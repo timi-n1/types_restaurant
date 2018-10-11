@@ -302,7 +302,9 @@ declare interface res_food_list {
  * 购买备菜材料
  */
 declare interface res_food_supply {
-    money: number //金币
+    money: number, //金币
+    material: number, // 当前材料数
+    cooked: number, // 成品数
     done: boolean //购买成功
 }
 
