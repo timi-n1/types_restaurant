@@ -327,6 +327,7 @@ declare interface res_guest_list {
         story_index: number, //顾客当前最新的故事索引
         is_read: boolean, //当前故事索引是否已读
         position_id: number,
+        intimacy: number, // 亲密度
         current_order: number, // 当前订单
         table_foods: number[], //已完成的菜品列表
         book_foods: number[], //已下订单的菜
