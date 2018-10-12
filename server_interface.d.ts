@@ -319,6 +319,9 @@ declare interface res_guest_cook {
 
 /**
  * 拉取餐厅顾客列表
+ * 注：
+ * 1. 当顾客未解锁任何故事 story_index = -1
+ * 2. 当顾客目前没有正在出的菜 current_food = null
  */
 declare interface res_guest_list {
     list: {
