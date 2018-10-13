@@ -181,6 +181,8 @@ declare const enum AppCode {
     buy_same_item = 8102,
     place_invalid_pid = 8103,
     buy_fid_not_found = 8200,
+    invalid_guest_id = 8300,
+    invalid_book_fid = 8301,
     story_is_read = 8400,
     guest_not_exist = 8401
 }
