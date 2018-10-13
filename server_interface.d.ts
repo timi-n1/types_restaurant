@@ -185,6 +185,8 @@ declare const enum AppCode {
     invalid_book_fid = 8301,
     no_food_material = 8302,
     guest_not_exist = 8303,
+    no_cooked_food = 8304,
+    stamina_is_lack = 8305,
     story_is_read = 8400
 }
 
@@ -218,13 +220,16 @@ interface eating_food {
 declare const enum AppMsg {
     'pid_not_exist!' = '喵呜，遇到一些问题了', //家具不存在
     'invalid_operations' = '喵呜，遇到一些问题了', //传入购买家具ID不合法
-    'not_enough_money' = '金币不足！快去讨好喵主子赚点钱吧', //不够钱
-    'fid_not_exist' = '没有该菜品', // 菜品不存在
+    'not_enough_money' = '金币不足', //不够钱
+    'fid_not_exist' = '该菜品不存在', // 菜品不存在
     'invalid_guest_id' = '该顾客未解锁，非法顾客', // 顾客未解锁
     'invalid_book_fid' = '该菜品未学习，非法订单菜品', // 菜品未学习，但是出现爱订单上 
     'no_food_material' = '该菜品没有原材料了', // 菜品没有原材料了
     'guest_not_exist' = '顾客服务器中不存在该顾客', // 顾客服务器请求错误
-    'same_item' = '喵呜，遇到一些问题了',//已经购买过该家具/菜品
+    'no_cooked_food' = '没有做好的菜品', // 没有制作好的该类型菜品
+    'same_item' = '购买了同样的物品',//已经购买过该家具/菜品
+    'stamina_is_lack' = '体力值不够', // 体力值不够无法撸菜
+    'story_is_read' = '该故事已经阅读', // 该故事已经被阅读过
     'wx_auth_err' = '喵呜，遇到一些问题了',//微信登录失败
     'server_err' = '喵呜，遇到一些问题了',//服务器异常,所有未定义的错误
 }
