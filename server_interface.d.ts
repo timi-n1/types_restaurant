@@ -187,7 +187,9 @@ declare const enum AppCode {
     guest_not_exist = 8303,
     no_cooked_food = 8304,
     stamina_is_lack = 8305,
-    story_is_read = 8400
+    story_is_read = 8400,
+
+    food_delivery_failed = 9000
 }
 
 
@@ -230,6 +232,7 @@ declare const enum AppMsg {
     'same_item' = '购买了同样的物品',//已经购买过该家具/菜品
     'stamina_is_lack' = '体力值不够', // 体力值不够无法撸菜
     'story_is_read' = '该故事已经阅读', // 该故事已经被阅读过
+    'food_delivery_failed' = '顾客服务器上菜失败', // 顾客服务器上菜失败
     'wx_auth_err' = '喵呜，遇到一些问题了',//微信登录失败
     'server_err' = '喵呜，遇到一些问题了',//服务器异常,所有未定义的错误
 }
