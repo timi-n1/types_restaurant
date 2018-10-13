@@ -183,8 +183,9 @@ declare const enum AppCode {
     buy_fid_not_found = 8200,
     invalid_guest_id = 8300,
     invalid_book_fid = 8301,
-    story_is_read = 8400,
-    guest_not_exist = 8401
+    no_food_material = 8302,
+    guest_not_exist = 8303,
+    story_is_read = 8400
 }
 
 
@@ -219,6 +220,10 @@ declare const enum AppMsg {
     'invalid_operations' = '喵呜，遇到一些问题了', //传入购买家具ID不合法
     'not_enough_money' = '金币不足！快去讨好喵主子赚点钱吧', //不够钱
     'fid_not_exist' = '没有该菜品', // 菜品不存在
+    'invalid_guest_id' = '该顾客未解锁，非法顾客', // 顾客未解锁
+    'invalid_book_fid' = '该菜品未学习，非法订单菜品', // 菜品未学习，但是出现爱订单上 
+    'no_food_material' = '该菜品没有原材料了', // 菜品没有原材料了
+    'guest_not_exist' = '顾客服务器中不存在该顾客', // 顾客服务器请求错误
     'same_item' = '喵呜，遇到一些问题了',//已经购买过该家具/菜品
     'wx_auth_err' = '喵呜，遇到一些问题了',//微信登录失败
     'server_err' = '喵呜，遇到一些问题了',//服务器异常,所有未定义的错误
