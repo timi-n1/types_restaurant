@@ -136,6 +136,13 @@ declare interface req_guest_food_dilivery {
     guest_id: number
 }
 
+/**
+ * 获取体力值
+ */
+declare interface req_user_get_stamina {
+    
+}
+
 
 /**
  * ---------------
@@ -181,19 +188,37 @@ declare const enum AppCode {
     buy_not_enough_money = 8101,
     buy_same_item = 8102,
     place_invalid_pid = 8103,
-    buy_fid_not_found = 8200,
+    invalid_fid = 8200,
+    fid_not_buy = 8201,
+    no_food_material = 8202,
     invalid_guest_id = 8300,
-    invalid_book_fid = 8301,
-    no_food_material = 8302,
-    guest_not_exist = 8303,
-    no_cooked_food = 8304,
-    stamina_is_lack = 8305,
+    guest_is_lock = 8301,
+    no_cooked_food = 8302,
+    stamina_is_lack = 8303,
     story_is_read = 8400,
-    guest_is_lock = 8401,
 
-    food_delivery_failed = 9000
+    fid_not_exist = 9000,
+    guest_not_exist = 9001
 }
 
+declare const enum AppMsg {
+    'pid_not_exist!' = '喵呜，遇到一些问题了', //家具不存在
+    'invalid_operations' = '喵呜，遇到一些问题了', //传入购买家具ID不合法
+    'not_enough_money' = '金币不足', //不够钱
+    'invalid_guest_id' = '该顾客不存在，非法顾客', // 配置表上顾客不能存在
+    'guest_is_lock' = '该顾客未解锁', // 该顾客没有解锁
+    'invalid_fid' = '没有该菜品，非法菜品', // 配置表中没有该菜品
+    'fid_not_buy' = '该菜品没有学习', // 该菜品没有学习
+    'guest_not_exist' = '顾客服务器中不存在该顾客', // 顾客服务器请求错误
+    'fid_not_exist' = '顾客服务器中该菜品不存在', // 顾客服务器中该菜品不在订单上
+    'no_food_material' = '该菜品没有原材料了', // 菜品没有原材料了
+    'no_cooked_food' = '没有做好的菜品', // 没有制作好的该类型菜品
+    'same_item' = '购买了同样的物品',//已经购买过该家具/菜品
+    'stamina_is_lack' = '体力值不够', // 体力值不够无法撸菜
+    'story_is_read' = '该故事已经阅读', // 该故事已经被阅读过
+    'wx_auth_err' = '喵呜，遇到一些问题了',//微信登录失败
+    'server_err' = '喵呜，遇到一些问题了',//服务器异常,所有未定义的错误
+}
 
 
 
@@ -221,24 +246,6 @@ interface eating_food {
  * 
  */
 
-declare const enum AppMsg {
-    'pid_not_exist!' = '喵呜，遇到一些问题了', //家具不存在
-    'invalid_operations' = '喵呜，遇到一些问题了', //传入购买家具ID不合法
-    'not_enough_money' = '金币不足', //不够钱
-    'fid_not_exist' = '该菜品不存在', // 菜品不存在
-    'invalid_guest_id' = '该顾客不存在，非法顾客', // 配置表上顾客不能存在
-    'guest_is_lock' = '该顾客未解锁', // 该顾客没有解锁
-    'invalid_book_fid' = '该菜品未学习，非法订单菜品', // 菜品未学习，但是出现爱订单上 
-    'no_food_material' = '该菜品没有原材料了', // 菜品没有原材料了
-    'guest_not_exist' = '顾客服务器中不存在该顾客', // 顾客服务器请求错误
-    'no_cooked_food' = '没有做好的菜品', // 没有制作好的该类型菜品
-    'same_item' = '购买了同样的物品',//已经购买过该家具/菜品
-    'stamina_is_lack' = '体力值不够', // 体力值不够无法撸菜
-    'story_is_read' = '该故事已经阅读', // 该故事已经被阅读过
-    'food_delivery_failed' = '顾客服务器上菜失败', // 顾客服务器上菜失败
-    'wx_auth_err' = '喵呜，遇到一些问题了',//微信登录失败
-    'server_err' = '喵呜，遇到一些问题了',//服务器异常,所有未定义的错误
-}
 
 
 /**
@@ -400,6 +407,13 @@ declare interface res_guest_food_delivery {
     money: number,
     intimacy: number,
     done: boolean
+}
+
+/**
+ * 返回体力值接口
+ */
+declare interface res_user_get_stamina {
+    stamina: number
 }
 
 declare const enum ServerInterFace {
