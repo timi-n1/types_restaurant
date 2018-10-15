@@ -140,7 +140,7 @@ declare interface req_guest_food_dilivery {
  * 获取体力值
  */
 declare interface req_user_get_stamina {
-    
+
 }
 
 
@@ -331,6 +331,7 @@ declare interface res_food_supply {
     material: number, // 当前材料数
     cooked: number, // 成品数
     done: boolean //购买成功
+    expire_during: time_stamp //备菜过期时间
 }
 
 /**
