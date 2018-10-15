@@ -47,7 +47,7 @@ declare interface furniture_config {
 }
 
 declare interface food_config {
-    fid: number,
+    pid: number,
     type?: number,
     sub_type?: number,
     is_skin?: number,
