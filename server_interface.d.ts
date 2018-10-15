@@ -140,7 +140,13 @@ declare interface req_guest_food_dilivery {
  * 获取体力值
  */
 declare interface req_user_get_stamina {
+}
 
+/**
+ * 获取当前顾客吃的菜
+ */
+declare interface req_guest_eating_food {
+    guest_id: number
 }
 
 
@@ -396,8 +402,10 @@ declare interface res_guest_booking {
 /**
  * 上菜,得钱，得亲密度
  * 可能解锁新故事
+ * 可能是要吃的食物
  */
 declare interface res_guest_food_delivery {
+    current_food?: eating_food
     story_index?: number
     money: number,
     intimacy: number
@@ -408,6 +416,13 @@ declare interface res_guest_food_delivery {
  */
 declare interface res_user_get_stamina {
     stamina: number
+}
+
+/**
+ * 获取当前顾客吃的菜
+ */
+declare interface res_guest_eating_food {
+    current_food: eating_food | null
 }
 
 declare const enum ServerInterFace {
