@@ -188,6 +188,7 @@ declare const enum AppCode {
     no_cooked_food = 8304,
     stamina_is_lack = 8305,
     story_is_read = 8400,
+    guest_is_lock = 8401,
 
     food_delivery_failed = 9000
 }
@@ -225,6 +226,7 @@ declare const enum AppMsg {
     'not_enough_money' = '金币不足', //不够钱
     'fid_not_exist' = '该菜品不存在', // 菜品不存在
     'invalid_guest_id' = '该顾客不存在，非法顾客', // 配置表上顾客不能存在
+    'guest_is_lock' = '该顾客未解锁', // 该顾客没有解锁
     'invalid_book_fid' = '该菜品未学习，非法订单菜品', // 菜品未学习，但是出现爱订单上 
     'no_food_material' = '该菜品没有原材料了', // 菜品没有原材料了
     'guest_not_exist' = '顾客服务器中不存在该顾客', // 顾客服务器请求错误
