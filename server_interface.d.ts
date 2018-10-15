@@ -272,9 +272,7 @@ declare interface BaseResponse<T> {
 /**
  * 顾客故事阅读完成
  */
-declare interface res_story_read {
-    done: boolean
-}
+declare type res_story_read = null
 
 /**
  * 引导任务完成
@@ -287,16 +285,13 @@ declare interface res_guide_done {
  * 购买家具
  */
 declare interface res_furniture_buy {
-    done: boolean
     money: number
 }
 
 /**
  * 放置家具
  */
-declare interface res_furniture_place {
-    done: boolean
-}
+declare type res_furniture_place = null
 
 /**
  * 拉取家具信息
@@ -333,7 +328,6 @@ declare interface res_food_supply {
     money: number, //金币
     material: number, // 当前材料数
     cooked: number, // 成品数
-    done: boolean //购买成功
     expire_during: time_stamp //备菜过期时间
 }
 
@@ -389,9 +383,7 @@ declare interface res_guest_category {
 /**
  * 曝光指定顾客
  */
-declare interface res_guest_exposure {
-    done: boolean
-}
+declare type res_guest_exposure  = null
 
 /**
  * 顾客下订单
@@ -399,7 +391,6 @@ declare interface res_guest_exposure {
  */
 declare interface res_guest_booking {
     fid?: number //新订单id
-    done: boolean
 }
 
 /**
@@ -409,8 +400,7 @@ declare interface res_guest_booking {
 declare interface res_guest_food_delivery {
     story_index?: number
     money: number,
-    intimacy: number,
-    done: boolean
+    intimacy: number
 }
 
 /**
