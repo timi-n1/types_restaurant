@@ -87,7 +87,8 @@ declare interface req_guest_cook {
  * @param {string} [rid] - 默认在自己餐厅，如果在他人餐厅，则需要带此参数
  */
 declare interface req_guest_list {
-    rid?: number
+    rid?: number,
+    should_update?: boolean
 }
 
 /**
@@ -351,7 +352,7 @@ declare interface res_guest_list {
         current_order: number, // 当前订单
         table_foods: number[], //已完成的菜品列表
         book_foods: number[], //已下订单的菜
-        current_food: eating_food //当前吃的菜
+        current_food: eating_food | null //当前吃的菜
     }[]
 }
 
