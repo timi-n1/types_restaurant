@@ -14,10 +14,10 @@ declare interface req_story_read {
 
 /**
  * 引导任务完成接口
- * @param {number} [guide_index] - 引导任务索引值
+ * @param {number} [task_id] - 引导任务id
  */
 declare interface req_guide_done {
-    guide_index: number
+    task_id: number
 }
 
 /**
@@ -287,9 +287,10 @@ declare type res_story_read = null
 
 /**
  * 引导任务完成
+ * @return {number} [task_id] 下一个任务id task_id = -1时 表示引导任务全部完成
  */
 declare interface res_guide_done {
-    guide_index: number
+    task_id: number
 }
 
 /**
