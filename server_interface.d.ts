@@ -143,6 +143,11 @@ declare interface req_user_get_stamina {
 }
 
 /**
+ * 获取顾客当前吃的菜
+ */
+declare interface req_guest_get_order {}
+
+/**
  * 获取当前顾客吃的菜
  */
 declare interface req_guest_eating_food {
@@ -424,6 +429,16 @@ declare interface res_user_get_stamina {
  */
 declare interface res_guest_eating_food {
     current_food: eating_food | null
+}
+
+/**
+ * 获取顾客订单
+ */
+declare interface res_guest_get_order {
+    list: {
+        guest_id: number,
+        current_order: number, // 当前订单
+    }[]
 }
 
 declare const enum ServerInterFace {
