@@ -354,6 +354,7 @@ declare interface res_guest_cook {
  */
 declare interface res_guest_list {
     list: {
+        task_id?: number, // 可能有的引导任务
         guest_id: number,
         is_new: boolean, //是否第一次出现的顾客
         story_index: number, //顾客当前最新的故事索引
