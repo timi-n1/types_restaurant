@@ -54,6 +54,8 @@ declare interface food_config {
     name?: string,
     ename?: string,
     price: number,
+    stock_price: number,
+    bonus_price: number,
     desc?: string,
 }
 
