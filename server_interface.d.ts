@@ -208,6 +208,7 @@ declare const enum AppCode {
     stamina_is_lack = 8303,
     story_is_read = 8400,
     invalid_task_id = 8500,
+    task_has_done = 8501,
 
     fid_not_exist = 9000,
     guest_not_exist = 9001,
@@ -232,6 +233,7 @@ declare const enum AppMsg {
     'story_is_read' = '该故事已经阅读', // 该故事已经被阅读过
     'food_delivery_fail' = '顾客上菜失败', // 顾客服务器上菜失败
     'invalid_task_id' = '不存在该任务，非法的引导任务id', // 引导任务不存在
+    'task_has_done' = '该任务已经做过了', // 引导任务已经完成或该任务已经完成
     'wx_auth_err' = '喵呜，遇到一些问题了',//微信登录失败
     'server_err' = '喵呜，遇到一些问题了',//服务器异常,所有未定义的错误
 }
