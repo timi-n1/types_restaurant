@@ -6,10 +6,12 @@
 
 /**
  * 曝光故事已读接口
+ * @param {number} [guest_id] - 读故事的顾客
  * @param {number} [story_index] - 已读故事索引
  */
 declare interface req_story_read {
-    story_index: number
+    story_index: number,
+    guest_id: number
 }
 
 /**
