@@ -291,6 +291,8 @@ declare type res_story_read = null
 
 /**
  * 引导任务完成
+ * 注: 若存在额外的回包
+ * 当完成该任务时，必须刷一个顾客来。会额外回包<res_guest_list>
  * @return {number} [task_id] 下一个任务id task_id = -1时 表示引导任务全部完成
  */
 declare interface res_guide_done {
