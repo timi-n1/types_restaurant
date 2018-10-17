@@ -281,6 +281,7 @@ interface eating_food {
 declare interface BaseResponse<T> {
     ret: AppCode,
     msg?: AppMsg,
+    cmd?: string,
     data: T
 }
 
@@ -291,8 +292,6 @@ declare type res_story_read = null
 
 /**
  * 引导任务完成
- * 注: 若存在额外的回包
- * 当完成该任务时，必须刷一个顾客来。会额外回包<res_guest_list>
  * @return {number} [task_id] 下一个任务id task_id = -1时 表示引导任务全部完成
  */
 declare interface res_guide_done {
@@ -445,6 +444,25 @@ declare interface res_guest_get_order {
     list: {
         guest_id: number,
         current_order: number, // 当前订单
+    }[]
+}
+
+/**
+ * 获取新刷顾客信息
+ */
+declare interface res_new_guest {
+    list: {
+        task_id?: number, // 可能有的引导任务
+        guest_id: number,
+        is_new: boolean, //是否第一次出现的顾客
+        story_index: number, //顾客当前最新的故事索引
+        is_read: boolean, //当前故事索引是否已读
+        position_id: number,
+        intimacy: number, // 亲密度
+        current_order: number, // 当前订单
+        table_foods: number[], //已完成的菜品列表
+        book_foods: number[], //已下订单的菜
+        current_food: eating_food | null //当前吃的菜
     }[]
 }
 
