@@ -97,15 +97,12 @@ declare interface task_config {
     id: number,
     type: number,
     icon: string,
-    talk1: string,
-    talk2: string,
-    talk3: string,
-    talk_btn1: string,
-    talk_btn2: string,
-    talk_btn3: string,
-    complete1: string,
-    complete2: string,
-    complete3: string
+    talk: string,
+    talk_reply: string,
+    talk_btn: string,
+    complete: string,
+    complete_reply: string,
+    complete_btn: string
 }
 
 declare interface cat_pos_in_yard {
