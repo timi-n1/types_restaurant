@@ -410,7 +410,7 @@ declare type res_guest_exposure  = null
  * 下订单可能失败，失败后有可能下发一个新订单
  */
 declare interface res_guest_booking {
-    fid?: number //新订单id
+    current_order?: number //新订单id
 }
 
 /**
