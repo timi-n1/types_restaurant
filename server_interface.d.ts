@@ -365,6 +365,7 @@ declare interface res_guest_cook {
  * 2. 当顾客目前没有正在出的菜 current_food = null
  */
 declare interface res_guest_list {
+    countdown: number // 下次刷新倒计时时间差
     list: {
         task_id?: number, // 可能有的引导任务
         guest_id: number,
