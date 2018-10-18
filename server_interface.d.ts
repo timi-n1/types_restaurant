@@ -262,7 +262,6 @@ interface eating_food {
  * 
  * @param {number} [intimacy] - 该顾客亲密度
  * @param {number} [position_id] - 顾客位置
- * @param {boolean} [is_new] - 是否新来顾客
  * 
  */
 
@@ -369,7 +368,7 @@ declare interface res_guest_list {
     list: {
         task_id?: number, // 可能有的引导任务
         guest_id: number,
-        is_new: boolean, //是否第一次出现的顾客
+        // is_new: boolean, //是否第一次出现的顾客
         story_index: number, //顾客当前最新的故事索引
         is_read: boolean, //当前故事索引是否已读
         position_id: number,
@@ -456,7 +455,7 @@ declare interface res_new_guest {
     list: {
         task_id?: number, // 可能有的引导任务
         guest_id: number,
-        is_new: boolean, //是否第一次出现的顾客
+        // is_new: boolean, //是否第一次出现的顾客
         story_index: number, //顾客当前最新的故事索引
         is_read: boolean, //当前故事索引是否已读
         position_id: number,
