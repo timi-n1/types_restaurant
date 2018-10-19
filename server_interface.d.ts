@@ -191,6 +191,9 @@ declare interface req_guest_eating_food {
  * - 新手引导模块
  * 8500 - 8599
  * 
+ * - 分享模块
+ * 8600 - 8699
+ * 
  * 顾客服务器: 9000 - 9999
  * 
 */
@@ -211,6 +214,7 @@ declare const enum AppCode {
     story_is_read = 8400,
     invalid_task_id = 8500,
     task_has_done = 8501,
+    work_times_limit = 8600,
 
     fid_not_exist = 9000,
     guest_not_exist = 9001,
@@ -236,6 +240,7 @@ declare const enum AppMsg {
     'food_delivery_fail' = '顾客上菜失败', // 顾客服务器上菜失败
     'invalid_task_id' = '出问题了，维修工人排查中', // 引导任务不存在
     'task_has_done' = '该任务已经做过了', // 引导任务已经完成或该任务已经完成
+    'work_times_limit' = '今日打工次数已达上限', // 今日的打工次数使用完了
     'wx_auth_err' = '出问题了，维修工人排查中',//微信登录失败
     'server_err' = '出问题了，维修工人排查中',//服务器异常,所有未定义的错误
 }
