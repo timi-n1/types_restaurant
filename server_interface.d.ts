@@ -156,6 +156,27 @@ declare interface req_guest_eating_food {
     guest_id: number
 }
 
+/**
+ * 当前餐厅访客信息
+ */
+declare interface req_restaurant_visit_info {
+    rid: number
+}
+
+/**
+ * 打工
+ */
+declare interface req_user_work {
+    rid: string,
+    fid: number
+}
+
+/**
+ * 进入主人餐馆获取订单
+ */
+declare interface req_user_get_order {
+    rid: number
+}
 
 /**
  * ---------------
@@ -489,6 +510,35 @@ declare interface res_new_guest {
         book_foods: number[], //已下订单的菜
         current_food: eating_food | null //当前吃的菜
     }[]
+}
+
+/**
+ * 获取餐馆访客信息
+ */
+declare interface res_restaurant_visit_info {
+    visitor_list: {
+        open_id: string,
+        avatar_url?: string
+    }[], // open_id
+    visitor_cooked_list: {
+        fid: number,
+        count: number
+    }[]
+}
+
+/**
+ * 打工
+ */
+declare interface res_user_work {
+    money: number
+    current_order: number
+}
+
+/**
+ * 进入主人餐馆获取订单
+ */
+declare interface res_user_get_order {
+    current_order?: number
 }
 
 declare const enum ServerInterFace {
