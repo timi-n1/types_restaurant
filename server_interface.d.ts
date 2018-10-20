@@ -216,9 +216,12 @@ declare const enum AppCode {
     task_has_done = 8501,
     work_times_limit = 8600,
 
-    fid_not_exist = 9000,
-    guest_not_exist = 9001,
-    food_delivery_fail = 9002
+    guest_server_error = 9000,
+    fid_not_exist = 9001,
+    guest_not_exist = 9002,
+    food_delivery_fail = 9003,
+    period_food_limited = 9004,
+    table_full = 9005,
 
 }
 
@@ -230,7 +233,7 @@ declare const enum AppMsg {
     'guest_is_lock' = '该顾客未解锁', // 该顾客没有解锁
     'invalid_fid' = '没有该菜品，非法菜品', // 配置表中没有该菜品
     'fid_not_buy' = '该菜品没有学习', // 该菜品没有学习
-    'guest_not_exist' = '出问题了，维修工人排查中', // 顾客服务器请求错误
+    'guest_not_exist' = '出问题了，维修工人排查中', // 顾客服务器顾客不存在
     'fid_not_exist' = '出问题了，维修工人排查中', // 顾客服务器中该菜品不在订单上
     'no_food_material' = '该菜品没有原材料了', // 菜品没有原材料了
     'no_cooked_food' = '没有做好的菜品', // 没有制作好的该类型菜品
@@ -241,6 +244,9 @@ declare const enum AppMsg {
     'invalid_task_id' = '出问题了，维修工人排查中', // 引导任务不存在
     'task_has_done' = '该任务已经做过了', // 引导任务已经完成或该任务已经完成
     'work_times_limit' = '今日打工次数已达上限', // 今日的打工次数使用完了
+    'period_food_limited' = '该周期内菜品数量已达上限', // 在该周期内菜品数量达到上限
+    'table_full' = '餐桌上菜满了', // 餐桌上的菜满了 
+    'guest_server_error' = '顾客服务器默认error', // 顾客服务器的默认错误 
     'wx_auth_err' = '出问题了，维修工人排查中',//微信登录失败
     'server_err' = '出问题了，维修工人排查中',//服务器异常,所有未定义的错误
 }
