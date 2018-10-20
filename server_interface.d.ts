@@ -174,7 +174,7 @@ declare interface req_user_work {
 /**
  * 进入主人餐馆获取订单
  */
-declare interface req_user_get_order {
+declare interface req_user_get_work_order {
     rid: number
 }
 
@@ -517,9 +517,9 @@ declare interface res_new_guest {
  */
 declare interface res_restaurant_visit_info {
     visitor_list: {
-        open_id: string,
+        open_id: string, // open_id
         avatar_url?: string
-    }[], // open_id
+    }[], 
     visitor_cooked_list: {
         fid: number,
         count: number
@@ -537,7 +537,7 @@ declare interface res_user_work {
 /**
  * 进入主人餐馆获取订单
  */
-declare interface res_user_get_order {
+declare interface res_user_get_work_order {
     current_order?: number
 }
 
