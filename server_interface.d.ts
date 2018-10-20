@@ -457,7 +457,8 @@ declare interface res_user_get_stamina {
  * 获取当前顾客吃的菜
  */
 declare interface res_guest_eating_food {
-    current_food: eating_food | null
+    current_food: eating_food | null,
+    current_order?: number
 }
 
 /**
