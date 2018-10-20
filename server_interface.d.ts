@@ -458,6 +458,7 @@ declare interface res_user_get_stamina {
  */
 declare interface res_guest_eating_food {
     current_food: eating_food | null,
+    is_leave: boolean,
     current_order?: number
 }
 
