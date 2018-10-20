@@ -424,6 +424,16 @@ declare interface res_guest_booking {
     current_order?: number //新订单id
 }
 
+/***
+ * 所有参数都必须使用 encodeURIComponent 编码
+ * @param {string} nick_name
+ * @param {string} avatar_url
+ */
+declare interface req_user_info{
+    nick_name:string,
+    avatar_url:string
+}
+
 /**
  * 上菜,得钱，得亲密度
  * 可能解锁新故事
