@@ -163,6 +163,8 @@ declare interface req_restaurant_visit_info {
     rid: number
 }
 
+declare type req_restaurant_tmp_visit_info = req_restaurant_visit_info
+
 /**
  * 打工
  */
@@ -528,19 +530,21 @@ declare interface res_restaurant_visit_info {
     }[]
 }
 
+declare type res_restaurant_tmp_visit_info = res_restaurant_visit_info
+
+
 /**
  * 打工
  */
 declare interface res_user_work {
     money: number
-    current_order: number
 }
 
 /**
  * 进入主人餐馆获取订单
  */
 declare interface res_user_get_work_order {
-    current_order?: number
+    orders: number[]
 }
 
 declare const enum ServerInterFace {
