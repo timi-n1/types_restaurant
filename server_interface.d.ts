@@ -268,7 +268,7 @@ declare const enum AppMsg {
     'work_times_limited' = '今日打工次数已达上限', // 今日的打工次数使用完了
     'period_food_limited' = '该周期内菜品数量已达上限', // 在该周期内菜品数量达到上限
     'table_full' = '餐桌上菜满了', // 餐桌上的菜满了 
-    'supply_counter_limited' = '备份数额超过最大限制', // 备份数额超过最大备份数
+    'supply_counter_limited' = '一种菜品最多备十份哦~', // 备份数额超过最大备份数
     'guest_server_error' = '顾客服务器默认error', // 顾客服务器的默认错误 
     'wx_auth_err' = '出问题了，维修工人排查中',//微信登录失败
     'server_err' = '出问题了，维修工人排查中',//服务器异常,所有未定义的错误
