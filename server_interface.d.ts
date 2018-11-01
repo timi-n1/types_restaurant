@@ -239,6 +239,7 @@ declare const enum AppCode {
     invalid_task_id = 8500,
     task_has_done = 8501,
     work_times_limited = 8600,
+    work_food_counter_limited = 8601,
 
     guest_server_error = 9000,
     fid_not_exist = 9001,
@@ -272,6 +273,7 @@ declare const enum AppMsg {
     'table_full' = '餐桌上菜满了', // 餐桌上的菜满了 
     'supply_counter_limited' = '一种菜品最多备十份哦~', // 备份数额超过最大备份数
     'guest_server_error' = '顾客服务器默认error', // 顾客服务器的默认错误 
+    'work_food_counter_limited' = '在该餐厅撸菜达到上限', // 在某餐厅撸菜达到上限
     'wx_auth_err' = '出问题了，维修工人排查中',//微信登录失败
     'server_err' = '出问题了，维修工人排查中',//服务器异常,所有未定义的错误
 }
