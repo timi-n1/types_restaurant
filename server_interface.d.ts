@@ -407,7 +407,7 @@ declare interface res_guest_list {
     list: {
         task_id?: number, // 可能有的引导任务
         guest_id: number,
-        // is_new: boolean, //是否第一次出现的顾客
+        is_new: boolean, //是否第一次出现的顾客
         story_index: number, //顾客当前最新的故事索引
         is_read: boolean, //当前故事索引是否已读
         position_id: number,
@@ -416,7 +416,8 @@ declare interface res_guest_list {
         table_foods: number[], //已完成的菜品列表
         book_foods: number[], //已下订单的菜
         current_food: eating_food | null //当前吃的菜
-    }[]
+    }[],
+    work_order?: number[] // 供好友做菜的菜品数组
 }
 
 /**
