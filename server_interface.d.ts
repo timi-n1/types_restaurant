@@ -548,10 +548,13 @@ declare interface res_user_work {
 }
 
 /**
- * 进入主人餐馆获取订单
+ * 主动推送的订单信息
  */
-declare interface res_user_get_work_order {
-    orders: number[]
+declare interface res_p_guest_order {
+    list: {
+        guest_id: number,
+        current_order: number
+    }[]
 }
 
 declare const enum ServerInterFace {
