@@ -525,14 +525,19 @@ declare interface res_restaurant_visit_info {
     visitor_list: {
         open_id: string, // open_id
         avatar_url?: string
+    }[]
+}
+
+declare interface res_restaurant_tmp_visit_info {
+    visitor_list: {
+        open_id: string, // open_id
+        avatar_url?: string
     }[], 
     visitor_cooked_list: {
         fid: number,
         count: number
     }[]
 }
-
-declare type res_restaurant_tmp_visit_info = res_restaurant_visit_info
 
 
 /**
@@ -580,4 +585,4 @@ declare const enum ServerInterFace {
     guest_exposure = 'guest_exposure',
     guest_booking = 'guest_booking',
     guest_food_ready = 'guest_food_ready'
-} 
+}
