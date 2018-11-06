@@ -319,6 +319,7 @@ interface eating_food {
  */
 declare interface BaseResponse<T> {
     ret: AppCode,
+    sid?: number,
     msg?: AppMsg,
     cmd?: string,
     data: T
