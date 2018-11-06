@@ -247,6 +247,8 @@ declare const enum AppCode {
     food_delivery_fail = 9003,
     period_food_limited = 9004,
     table_full = 9005,
+    set_order_fail = 9006,
+    no_order = 9007
 
 }
 
@@ -272,6 +274,8 @@ declare const enum AppMsg {
     'period_food_limited' = '该周期内菜品数量已达上限', // 在该周期内菜品数量达到上限
     'table_full' = '餐桌上菜满了', // 餐桌上的菜满了 
     'supply_counter_limited' = '一种菜品最多备十份哦~', // 备份数额超过最大备份数
+    'set_order_fail' = '下订单失败', // 没有set订单时  就接单
+    'no_order' = '没有已下订单', // 顾客服务器没有set_order
     'guest_server_error' = '顾客服务器默认error', // 顾客服务器的默认错误 
     'work_food_counter_limited' = '在该餐厅撸菜达到上限', // 在某餐厅撸菜达到上限
     'wx_auth_err' = '出问题了，维修工人排查中',//微信登录失败
