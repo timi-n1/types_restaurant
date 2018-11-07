@@ -981,5 +981,6 @@ declare const enum ServerInterface {
     guest_story = 'guest_story',
     guest_exposure = 'guest_exposure',
     guest_booking = 'guest_booking',
-    guest_food_delivery = 'guest_food_delivery'
+    guest_food_delivery = 'guest_food_delivery',                         
+    p_guest_leave = 'p_guest_leave'
 } 
