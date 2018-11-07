@@ -282,7 +282,390 @@ declare const enum AppMsg {
     'server_err' = '出问题了，维修工人排查中',//服务器异常,所有未定义的错误
 }
 
+declare namespace Server {
+    interface BaseResponse<T> {
+        ret: AppCode,
+        sid?: number,
+        msg?: AppMsg,
+        cmd?: string,
+        data: T
+    }
 
+    /**
+     * 拉顾客列表接口
+     */
+    module guest_list {
+        type request = {
+            rid?: number,
+            should_update?: boolean
+        }
+
+        type response = BaseResponse<{
+            countdown: number // 下次刷新倒计时时间差
+            list: {
+                task_id?: number, // 可能有的引导任务
+                guest_id: number,
+                is_new: boolean, //是否第一次出现的顾客
+                story_index: number, //顾客当前最新的故事索引
+                is_read: boolean, //当前故事索引是否已读
+                position_id: number,
+                intimacy: number, // 亲密度
+                current_order: number, // 当前订单
+                table_foods: number[], //已完成的菜品列表
+                book_foods: number[], //已下订单的菜
+                current_food: eating_food | null //当前吃的菜
+            }[]
+        }>
+    }
+
+    /**
+     * 阅读故事
+     */
+    module story_read {
+        /**
+         * 曝光故事已读接口
+         * @param {number} [guest_id] - 读故事的顾客
+         * @param {number} [story_index] - 已读故事索引
+         */
+        type story_read = {
+            story_index: number,
+            guest_id: number
+        }
+
+        type response = BaseResponse<null>
+    }
+
+    /**
+     * 完成任务
+     */
+    module task_done {
+        /**
+         * 任务完成接口
+         * @param {number} [task_id] - 任务id
+         */
+        type request = {
+            task_id: number
+        }
+        /**
+         * 引导任务完成
+         * @return {number} [task_id] 下一个任务id task_id = -1时 表示引导任务全部完成 普通任务完成时，不下task_id
+         */
+        type response = BaseResponse<{
+            task_id?: number
+        }>
+    }
+
+    /**
+     * 买家具
+     */
+    module furniture_buy { 
+        /**
+         * 购买家具
+         * @param {number} [pid] - 家具pid
+         */
+        type request = {
+            pid: number
+        }
+
+        /**
+         * @param {number} [money] 金币
+         */
+        type response = BaseResponse<{
+            money: number
+        }>
+    }
+
+    /**
+     * 摆放家具
+     */
+    module furniture_place {      
+        type request = {
+            pid: number
+        }
+
+        type response = null
+    }
+
+    /**
+     * 家具列表
+     */
+    module furniture_list {
+        type request = {
+            rid?: string    
+        }
+        /**
+         * @param {number[]} [placed_furniture] 摆放的家具
+         * @param {number[]} {my_furniture} 已经拥有的家具
+         */
+        type response = BaseResponse<{
+            placed_furniture: number[],
+            my_furniture: number[]
+        }>
+    }
+
+    /**
+     * 购买菜品
+     */
+    module food_buy {
+        type request = {
+            fid: number
+        }
+
+        type response = BaseResponse<{
+            money: number
+        }>
+    }
+
+    /**
+     * 菜品列表
+     */
+    module food_list {
+        type request = {
+            rid?: string
+        }
+
+        type response = BaseResponse<{
+            list: {
+                fid: number, //菜品id
+                cooked: number, //已有备好的菜
+                material: number, //剩余材料份额
+                update_time: time_stamp, //最近备菜时间
+                expire_during: time_stamp //备菜过期时间
+            }[]
+        }>
+    }
+
+    /**
+     * 备菜
+     */
+    module food_supply {
+        type request = {
+            fid: number
+        }
+
+        type response = BaseResponse<{
+            money: number, //金币
+            material: number, // 当前材料数
+            cooked: number, // 成品数
+            expire_during: time_stamp //备菜过期时间
+        }>
+    }
+
+    /**
+     * 顾客撸菜
+     */
+    module guest_cook {
+        type request = {
+            fid: number
+            guest_id: number,
+            rid?: string
+        }
+
+        type response = BaseResponse<{
+            stamina: number, //体力值
+            material: number, //剩余材料份额
+            cooked: number //已有备好的菜
+        }>
+    }
+
+    /**
+     * 顾客图鉴
+     */
+    module guest_category {
+        type request = {
+            rid?: number
+        }
+
+        type response = BaseResponse<{
+            list: {
+                guest_id: number, //顾客角色id
+                intimacy: number, // 顾客亲密度
+                story_index: number //顾客索引
+            }[]
+        }>
+    }
+
+    /**
+     * 顾客故事站
+     */
+    module guest_story {
+        type request = {
+            guest_id: number
+        }
+
+        type response = BaseResponse<{
+            story_index: number, //已解锁到哪个故事
+            read: boolean //当前故事是否已读
+        }>
+    }
+
+    /**
+     * 顾客曝光
+     */
+    module guest_exposure {
+        type request = {
+            guest_id: number
+        }
+
+        type response = BaseResponse<null>
+    }
+
+    /**
+     * 接订单
+     */
+    module guest_booking {
+        type request = {
+            fid: number
+            guest_id: number
+        }
+        type response = BaseResponse<{
+            current_order?: number //新订单id
+        }>
+    }
+
+    /**
+     * 上菜
+     */
+    module guest_food_delivery {
+        type response = BaseResponse<{
+            current_food?: eating_food
+            story_index?: number
+            money: number,
+            intimacy: number
+        }>
+    }
+
+    /**
+     * 返回正在吃的食物
+     */
+    module guest_eating_food {
+        type response = BaseResponse<{
+            current_food: eating_food | null,
+            is_leave: boolean,
+            current_order?: number
+        }>
+    }
+
+    /**
+     * 获取体力值
+     */
+    module user_get_stamina {
+        type request = null
+
+        type response = BaseResponse<{
+            stamina: number
+        }>
+    }
+
+    /**
+     * 用户信息
+     */
+    module user_info {
+        type request = {
+            nick_name:string,
+            avatar_url:string
+        }
+    }
+
+    /**
+     * 获取顾客订单
+     */
+    module guest_get_order {
+        type request = null
+        type response = BaseResponse<{
+            list: {
+                guest_id: number,
+                current_order: number, // 当前订单
+            }[]
+        }>
+    }
+    
+    
+
+    /**
+     * 获取新刷顾客信息
+     */
+    module new_guest {
+        type request = null
+
+        type response = BaseResponse<{
+            list: {
+                task_id?: number, // 可能有的引导任务
+                guest_id: number,
+                is_new: boolean, //是否第一次出现的顾客
+                story_index: number, //顾客当前最新的故事索引
+                is_read: boolean, //当前故事索引是否已读
+                position_id: number,
+                intimacy: number, // 亲密度
+                current_order: number, // 当前订单
+                table_foods: number[], //已完成的菜品列表
+                book_foods: number[], //已下订单的菜
+                current_food: eating_food | null //当前吃的菜
+            }[]
+        }>
+    }
+
+    /**
+     * 获取餐馆访客信息
+     */
+    module restaurant_visit_info {
+        type request = {
+            rid: number
+        }
+
+        type response = BaseResponse<{
+            visitor_list: {
+                open_id: string, // open_id
+                avatar_url?: string
+            }[]
+        }>
+    }
+
+    module restaurant_tmp_visit_info {
+        type request = {
+            rid: number
+        }
+
+        type response = BaseResponse<{
+            visitor_list: {
+                open_id: string, // open_id
+                avatar_url?: string
+            }[], 
+            visitor_cooked_list: {
+                fid: number,
+                count: number
+            }[]
+        }>
+    }
+
+    /**
+     * 打工
+     */
+    module user_work {
+        type request = {
+            rid: string,
+            fid: number
+        }
+
+        type response = BaseResponse<{
+            money: number
+        }>
+    }
+
+    namespace Push {
+        /**
+         * 推送订单
+         */
+        module p_guest_order {
+            type response = BaseResponse<{
+                list: {
+                    guest_id: number,
+                    current_order: number
+                }[]
+            }>
+        }
+    }
+}
 
 type time_stamp = number
 
@@ -544,7 +927,6 @@ declare interface res_restaurant_tmp_visit_info {
     }[]
 }
 
-
 /**
  * 打工
  */
@@ -562,7 +944,8 @@ declare interface res_p_guest_order {
     }[]
 }
 
-declare const enum ServerInterFace {
+
+declare const enum ServerInterface {
     /**
      * 故事系统模块 - story
      */
@@ -592,5 +975,5 @@ declare const enum ServerInterFace {
     guest_story = 'guest_story',
     guest_exposure = 'guest_exposure',
     guest_booking = 'guest_booking',
-    guest_food_ready = 'guest_food_ready'
-}
+    guest_food_delivery = 'guest_food_delivery'
+} 
