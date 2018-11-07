@@ -664,6 +664,12 @@ declare namespace Server {
                 }[]
             }>
         }
+                                     
+        module p_guest_leave{
+            type response = BaseResponse<{
+                guest_ids: number[]
+            }>
+        }
     }
 }
 
