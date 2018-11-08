@@ -540,6 +540,7 @@ declare namespace Server {
      */
     module guest_eating_food {
         type response = BaseResponse<{
+            task_id?: number,
             current_food: eating_food | null,
             is_leave: boolean,
             current_order?: number
