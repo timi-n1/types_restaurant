@@ -242,8 +242,8 @@ declare const enum AppCode {
     work_food_counter_limited = 8601,
 
     guest_server_error = 9000,
-    fid_not_found = 9001,
-    guest_id_not_found = 9002,
+    fid_not_exist = 9001,
+    guest_not_exist = 9002,
     food_delivery_fail = 9003,
     period_food_limited = 9004,
     table_full = 9005,
@@ -260,8 +260,8 @@ declare const enum AppMsg {
     'guest_is_lock' = '该顾客未解锁', // 该顾客没有解锁
     'invalid_fid' = '没有该菜品，非法菜品', // 配置表中没有该菜品
     'fid_not_buy' = '该菜品没有学习', // 该菜品没有学习
-    'guest_id_not_found' = '出问题了，维修工人排查中', // 顾客服务器顾客不存在
-    'fid_not_found' = '出问题了，维修工人排查中', // 顾客服务器中该菜品不在订单上
+    'guest_not_exist' = '出问题了，维修工人排查中', // 顾客服务器顾客不存在
+    'fid_not_exist' = '出问题了，维修工人排查中', // 顾客服务器中该菜品不在订单上
     'no_food_material' = '该菜品没有原材料了', // 菜品没有原材料了
     'no_cooked_food' = '没有做好的菜品', // 没有制作好的该类型菜品
     'same_item' = '购买了同样的物品',//已经购买过该家具/菜品
@@ -661,8 +661,7 @@ declare namespace Server {
             type response = BaseResponse<{
                 list: {
                     guest_id: number,
-                    current_order: number,
-                    task_id?: number
+                    current_order: number
                 }[]
             }>
         }
@@ -948,8 +947,7 @@ declare interface res_user_work {
 declare interface res_p_guest_order {
     list: {
         guest_id: number,
-        current_order: number,
-        task_id?: number
+        current_order: number
     }[]
 }
 
@@ -959,6 +957,8 @@ declare const enum ServerInterface {
      * 故事系统模块 - story
      */
     story_read = 'story_read',
+    p_new_guest = 'new_guest',
+    p_guest_order = 'p_guest_order',
     /**
      * 新手引导模块 - guide
      */
@@ -984,8 +984,6 @@ declare const enum ServerInterface {
     guest_story = 'guest_story',
     guest_exposure = 'guest_exposure',
     guest_booking = 'guest_booking',
-    guest_food_delivery = 'guest_food_delivery',
-    p_guest_order = 'p_guest_order',                         
-    p_guest_leave = 'p_guest_leave',
-    p_new_guest = 'new_guest'
+    guest_food_delivery = 'guest_food_delivery',                         
+    p_guest_leave = 'p_guest_leave'
 } 
