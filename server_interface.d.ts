@@ -539,6 +539,10 @@ declare namespace Server {
      * 返回正在吃的食物
      */
     module guest_eating_food {
+        type request = {
+            guest_id: number
+        }
+
         type response = BaseResponse<{
             task_id?: number,
             current_food: eating_food | null,
@@ -552,6 +556,19 @@ declare namespace Server {
      */
     module user_get_stamina {
         type request = null
+
+        type response = BaseResponse<{
+            stamina: number
+        }>
+    }
+
+    /**
+     * 增加体力值
+     */
+    module user_add_stamina {
+        type request = {
+            count: number
+        }
 
         type response = BaseResponse<{
             stamina: number
