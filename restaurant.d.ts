@@ -57,6 +57,7 @@ declare interface food_config {
     stock_price: number,
     bonus_price: number,
     desc?: string,
+    oa_unlock?: number
 }
 
 //====================================== position ==================================*/
