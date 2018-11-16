@@ -462,7 +462,7 @@ declare namespace Server {
         }
 
         type response = BaseResponse<{
-            stamina: number, //体力值
+            decr_stamina: number, //体力值
             material: number, //剩余材料份额
             cooked: number //已有备好的菜
         }>
@@ -558,7 +558,7 @@ declare namespace Server {
         type request = null
 
         type response = BaseResponse<{
-            stamina: number
+            incr_stamina: number
         }>
     }
 
