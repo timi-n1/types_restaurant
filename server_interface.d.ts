@@ -571,7 +571,7 @@ declare namespace Server {
         }
 
         type response = BaseResponse<{
-            stamina: number,
+            incr_stamina: number,
             add_success: boolean
         }>
     }
