@@ -562,16 +562,17 @@ declare namespace Server {
         }>
     }
 
-    /**
+   /**
      * 增加体力值
      */
-    module user_add_stamina {
+    module user_add_stamina_from_official {
         type request = {
             count: number
         }
 
         type response = BaseResponse<{
-            stamina: number
+            stamina: number,
+            add_success: boolean
         }>
     }
 
