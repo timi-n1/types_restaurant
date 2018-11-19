@@ -527,6 +527,10 @@ declare namespace Server {
      * 上菜
      */
     module guest_food_delivery {
+        type request = {
+            guestId: number
+        }
+        
         type response = BaseResponse<{
             current_food?: eating_food
             story_index?: number
