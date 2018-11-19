@@ -530,7 +530,7 @@ declare namespace Server {
         type request = {
             guestId: number
         }
-        
+
         type response = BaseResponse<{
             current_food?: eating_food
             story_index?: number
@@ -603,7 +603,26 @@ declare namespace Server {
         }>
     }
     
-    
+    module send_order {
+        type request = {
+            guest_ids: number[]
+        }
+        type response = BaseResponse<{
+            list: {
+                guest_id: number,
+                current_order: number
+            }[]
+        }>
+    }
+
+    module which_task {
+        type request = {
+            guest_id: number
+        }
+        type response = BaseResponse<{
+            task_id: number | null
+        }>
+    }
 
     /**
      * 获取新刷顾客信息
