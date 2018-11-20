@@ -284,18 +284,22 @@ declare const enum AppMsg {
 
 declare namespace Server {
     interface BaseResponse<T> {
-        ret: AppCode,
+        ret: number,
         sid?: number,
-        msg?: AppMsg,
+        msg?: string,
         cmd?: string,
         data: T
+    }
+
+    interface BaseRequest {
+        open_id: string
     }
 
     /**
      * 拉顾客列表接口
      */
     module guest_list {
-        type request = {
+        interface request extends BaseRequest {
             rid?: number,
             should_update?: boolean
         }
@@ -322,6 +326,10 @@ declare namespace Server {
      * 阅读故事
      */
     module story_read {
+        interface request extends BaseRequest {
+            story_index: number
+            guest_id: number
+        }
         /**
          * 曝光故事已读接口
          * @param {number} [guest_id] - 读故事的顾客
@@ -343,7 +351,7 @@ declare namespace Server {
          * 任务完成接口
          * @param {number} [task_id] - 任务id
          */
-        type request = {
+        interface request extends BaseRequest {
             task_id: number
         }
         /**
@@ -363,7 +371,7 @@ declare namespace Server {
          * 购买家具
          * @param {number} [pid] - 家具pid
          */
-        type request = {
+        interface request extends BaseRequest {
             pid: number
         }
 
@@ -379,20 +387,22 @@ declare namespace Server {
      * 摆放家具
      */
     module furniture_place {      
-        type request = {
+        interface request extends BaseRequest {
             pid: number
         }
 
-        type response = null
+        type response = BaseResponse<{
+        }>
     }
 
     /**
      * 家具列表
      */
     module furniture_list {
-        type request = {
+        interface request extends BaseRequest {
             rid?: string    
         }
+
         /**
          * @param {number[]} [placed_furniture] 摆放的家具
          * @param {number[]} {my_furniture} 已经拥有的家具
@@ -407,8 +417,8 @@ declare namespace Server {
      * 购买菜品
      */
     module food_buy {
-        type request = {
-            fid: number
+        interface request extends BaseRequest {
+            fid: number   
         }
 
         type response = BaseResponse<{
@@ -420,7 +430,7 @@ declare namespace Server {
      * 菜品列表
      */
     module food_list {
-        type request = {
+        interface request extends BaseRequest {
             rid?: string
         }
 
@@ -439,8 +449,9 @@ declare namespace Server {
      * 备菜
      */
     module food_supply {
-        type request = {
-            fid: number
+        interface request extends BaseRequest {
+            fid: number   
+            count: number
         }
 
         type response = BaseResponse<{
@@ -455,10 +466,10 @@ declare namespace Server {
      * 顾客撸菜
      */
     module guest_cook {
-        type request = {
+        interface request extends BaseRequest {
             fid: number
             guest_id: number,
-            rid?: string
+            rid?: string   
         }
 
         type response = BaseResponse<{
@@ -472,10 +483,10 @@ declare namespace Server {
      * 顾客图鉴
      */
     module guest_category {
-        type request = {
-            rid?: number
+        interface request extends BaseRequest {
+            rid?: string   
         }
-
+        
         type response = BaseResponse<{
             list: {
                 guest_id: number, //顾客角色id
@@ -489,7 +500,7 @@ declare namespace Server {
      * 顾客故事站
      */
     module guest_story {
-        type request = {
+        interface request extends BaseRequest {
             guest_id: number
         }
 
@@ -503,7 +514,7 @@ declare namespace Server {
      * 顾客曝光
      */
     module guest_exposure {
-        type request = {
+        interface request extends BaseRequest {
             guest_id: number
         }
 
@@ -514,10 +525,10 @@ declare namespace Server {
      * 接订单
      */
     module guest_booking {
-        type request = {
-            fid: number
+        interface request extends BaseRequest {
             guest_id: number
         }
+
         type response = BaseResponse<{
             current_order?: number //新订单id
         }>
@@ -527,10 +538,9 @@ declare namespace Server {
      * 上菜
      */
     module guest_food_delivery {
-        type request = {
-            guestId: number
+        interface request extends BaseRequest {
+            guest_id: number
         }
-
         type response = BaseResponse<{
             current_food?: eating_food
             story_index?: number
@@ -543,7 +553,7 @@ declare namespace Server {
      * 返回正在吃的食物
      */
     module guest_eating_food {
-        type request = {
+        interface request extends BaseRequest {
             guest_id: number
         }
 
@@ -559,7 +569,8 @@ declare namespace Server {
      * 获取体力值
      */
     module user_get_stamina {
-        type request = null
+        interface request extends BaseRequest {
+        }
 
         type response = BaseResponse<{
             incr_stamina: number
@@ -570,8 +581,7 @@ declare namespace Server {
      * 增加体力值
      */
     module user_add_stamina_from_official {
-        type request = {
-            count: number
+        interface request extends BaseRequest {
         }
 
         type response = BaseResponse<{
@@ -594,7 +604,8 @@ declare namespace Server {
      * 获取顾客订单
      */
     module guest_get_order {
-        type request = null
+        interface request extends BaseRequest {
+        }
         type response = BaseResponse<{
             list: {
                 guest_id: number,
@@ -602,9 +613,9 @@ declare namespace Server {
             }[]
         }>
     }
-    
+
     module send_order {
-        type request = {
+        interface request extends BaseRequest {
             guest_ids: number[]
         }
         type response = BaseResponse<{
@@ -614,11 +625,12 @@ declare namespace Server {
             }[]
         }>
     }
-
+    
     module which_task {
-        type request = {
+        interface request extends BaseRequest {
             guest_id: number
         }
+        
         type response = BaseResponse<{
             task_id?: number
         }>
