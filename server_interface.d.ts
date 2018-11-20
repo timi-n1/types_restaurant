@@ -620,7 +620,7 @@ declare namespace Server {
             guest_id: number
         }
         type response = BaseResponse<{
-            task_id: number | null
+            task_id?: number
         }>
     }
 
