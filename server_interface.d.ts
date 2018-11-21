@@ -706,6 +706,14 @@ declare namespace Server {
         }>
     }
 
+    module guest_leave {
+        interface request extends BaseRequest {
+            guest_id: number
+        }
+
+        type response = BaseResponse<{}>
+    }
+
     namespace Push {
         /**
          * 推送订单
@@ -714,7 +722,8 @@ declare namespace Server {
             type response = BaseResponse<{
                 list: {
                     guest_id: number,
-                    current_order: number
+                    current_order?: number,
+                    task_id?: number
                 }[]
             }>
         }
