@@ -364,14 +364,6 @@ declare namespace Server {
     }
 
     /**
-     * 重置数据
-     */
-    module reset {
-        interface request extends BaseRequest {}
-        type response = BaseResponse<{}>
-    }
-
-    /**
      * 买家具
      */
     module furniture_buy { 
@@ -481,6 +473,7 @@ declare namespace Server {
         }
 
         type response = BaseResponse<{
+            stamina: number, // 全量
             decr_stamina: number, //体力值
             material: number, //剩余材料份额
             cooked: number //已有备好的菜
@@ -581,6 +574,7 @@ declare namespace Server {
         }
 
         type response = BaseResponse<{
+            stamina: number, // 全量
             incr_stamina: number
         }>
     }
