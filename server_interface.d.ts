@@ -364,6 +364,14 @@ declare namespace Server {
     }
 
     /**
+     * 重置数据
+     */
+    module reset {
+        interface request extends BaseRequest {}
+        type response = BaseResponse<{}>
+    }
+
+    /**
      * 买家具
      */
     module furniture_buy { 
