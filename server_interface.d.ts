@@ -235,6 +235,7 @@ declare const enum AppCode {
     guest_is_lock = 8301,
     no_cooked_food = 8302,
     stamina_is_lack = 8303,
+    archive_fail = 8304,
     story_is_read = 8400,
     invalid_task_id = 8500,
     task_has_done = 8501,
@@ -319,6 +320,16 @@ declare namespace Server {
                 book_foods: number[], //已下订单的菜
                 current_food: eating_food | null //当前吃的菜
             }[]
+        }>
+    }
+
+    module user_archive {
+        interface request extends BaseRequest {
+            data: string
+        }
+
+        type response = BaseResponse<{
+            archive_timestamp?: time_stamp
         }>
     }
 
