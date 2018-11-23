@@ -322,6 +322,12 @@ declare namespace Server {
         }>
     }
 
+    module reset {
+        interface request extends BaseRequest {}
+
+        type response = BaseResponse<{}>
+    }
+
     /**
      * 阅读故事
      */
