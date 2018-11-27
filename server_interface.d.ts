@@ -719,14 +719,27 @@ declare namespace Server {
             rid: number
         }
         type response = BaseResponse<{
-            placed_furniture: number[], 
-            food_list: {
-                fid: number, //菜品id
-                cooked: number, //已有备好的菜
-                material: number, //剩余材料份额
-                update_time: time_stamp, //最近备菜时间
-                expire_during: time_stamp //备菜过期时间
-            }[]
+            archive: {
+                myGuestList?: {[id: number]: {
+                    intimacy: number, 
+                    guestId: number, 
+                    isLock: number, 
+                    isRead: number, 
+                    storyIndex: number
+                }},
+                myStamina?: { stamina?: number, updateTime?: number },
+                myOfflineInfo?: { isOffline?: boolean, leaveTime?: number },
+                myFurniture?: number[],
+                myPlacedFurniture?: { [pid: number]: number }
+                myFoodList?: {[fid: number]: {
+                    cooked: number,
+                    material: number,
+                    updateTime: number
+                }}
+                restaurantInfo?: { myMoney?: number, myGuestComeTimestamp?: number},
+                guideProgress?: { guideIndex?: number },
+                archive_time?: number
+            }
         }>
     }
 
