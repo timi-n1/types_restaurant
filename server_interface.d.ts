@@ -712,6 +712,25 @@ declare namespace Server {
     }
 
     /**
+     * 获取用户存档信息
+     */
+    module restaurant_get_archive {
+        type request = {
+            rid: number
+        }
+        type response = BaseResponse<{
+            placed_furniture: number[], 
+            food_list: {
+                fid: number, //菜品id
+                cooked: number, //已有备好的菜
+                material: number, //剩余材料份额
+                update_time: time_stamp, //最近备菜时间
+                expire_during: time_stamp //备菜过期时间
+            }[]
+        }>
+    }
+
+    /**
      * 打工
      */
     module user_work {
