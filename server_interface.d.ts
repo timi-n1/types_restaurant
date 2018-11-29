@@ -744,6 +744,18 @@ declare namespace Server {
     }
 
     /**
+     * 获取money
+     */
+    module user_get_money {
+        interface request extends BaseRequest {
+        }
+
+        type response = BaseResponse<{
+            money: number
+        }>
+    }
+
+    /**
      * 打工
      */
     module user_work {
