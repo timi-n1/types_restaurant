@@ -563,7 +563,8 @@ declare namespace Server {
             current_food?: eating_food
             story_index?: number
             money: number,
-            intimacy: number
+            intimacy: number,
+            islikeFood?: boolean
         }>
     }
 
