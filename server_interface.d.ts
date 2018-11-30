@@ -593,7 +593,8 @@ declare namespace Server {
 
         type response = BaseResponse<{
             stamina: number, // 全量
-            incr_stamina: number
+            incr_stamina: number,
+            countdown?: number
         }>
     }
 
