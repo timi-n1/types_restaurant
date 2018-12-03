@@ -323,22 +323,6 @@ declare namespace Server {
         }>
     }
 
-    module user_archive {
-        interface request extends BaseRequest {
-            data: string
-        }
-
-        type response = BaseResponse<{
-            archive_timestamp?: time_stamp
-        }>
-    }
-
-    module reset {
-        interface request extends BaseRequest {}
-
-        type response = BaseResponse<{}>
-    }
-
     /**
      * 阅读故事
      */
@@ -563,8 +547,7 @@ declare namespace Server {
             current_food?: eating_food
             story_index?: number
             money: number,
-            intimacy: number,
-            islikeFood?: boolean
+            intimacy: number
         }>
     }
 
@@ -593,8 +576,7 @@ declare namespace Server {
 
         type response = BaseResponse<{
             stamina: number, // 全量
-            incr_stamina: number,
-            countdown?: number
+            incr_stamina: number
         }>
     }
 
@@ -714,6 +696,33 @@ declare namespace Server {
     }
 
     /**
+     * 获取好友撸菜信息
+     */
+    module restaurant_get_food_helper {
+        type request = {
+            fid: number
+        }
+
+        type response = BaseResponse<{
+            helpers: string[]
+        }>
+    }
+
+    /**
+     * 帮忙加速
+     */
+    module restaurant_food_speed_up {
+        type request = {
+            rid: string,
+            fid: number
+        }
+
+        type response = BaseResponse<{
+            help_success: boolean
+        }>
+    }
+
+    /**
      * 获取用户存档信息
      */
     module restaurant_get_archive {
@@ -744,19 +753,7 @@ declare namespace Server {
             }
         }>
     }
-
-    /**
-     * 获取money
-     */
-    module user_get_money {
-        interface request extends BaseRequest {
-        }
-
-        type response = BaseResponse<{
-            money: number
-        }>
-    }
-
+    
     /**
      * 打工
      */
@@ -777,6 +774,16 @@ declare namespace Server {
         }
 
         type response = BaseResponse<{}>
+    }
+
+    module user_archive {
+        interface request extends BaseRequest {
+            data: string
+        }
+
+        type response = BaseResponse<{
+            archive_timestamp?: time_stamp
+        }>
     }
 
     namespace Push {
