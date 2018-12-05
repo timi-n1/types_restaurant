@@ -671,13 +671,13 @@ declare namespace Server {
     /**
      * 获取money
      */
-    module user_add_money {
+    module user_set_money {
         interface request extends BaseRequest {
             money: number
         }
 
         type response = BaseResponse<{
-            restMoney: number
+            newMoney: number
         }>
     }
 
