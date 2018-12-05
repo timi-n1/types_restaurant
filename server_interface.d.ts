@@ -235,7 +235,6 @@ declare const enum AppCode {
     guest_is_lock = 8301,
     no_cooked_food = 8302,
     stamina_is_lack = 8303,
-    archive_fail = 8304,
     story_is_read = 8400,
     invalid_task_id = 8500,
     task_has_done = 8501,
@@ -323,6 +322,12 @@ declare namespace Server {
         }>
     }
 
+    module reset {
+        interface request extends BaseRequest {}
+
+        type response = BaseResponse<{}>
+    }
+
     /**
      * 阅读故事
      */
@@ -361,6 +366,37 @@ declare namespace Server {
          */
         type response = BaseResponse<{
             task_id?: number
+        }>
+    }
+
+    /**
+     * 获取任务数据接口
+     */
+    module task_get_data {
+        /**
+         * 获取任务数据接口
+         * @param {number} [task_id] - 任务id
+         * @param {number} [guest_id] - 顾客id
+         */
+        interface request extends BaseRequest {
+            task_id: number,
+            guest_id: number
+        }
+        /**
+         * 获取任务数据
+         * 1. 1006 故事菜品解锁引导任务 
+         * @return {number} [next_story_food] 下一个故事解锁需要的菜品
+         * 2. 1007 pay the bill任务
+         * @return {} [] 支付订单所需要的信息
+         */
+        type response = BaseResponse<{
+            next_story_food?: number
+            bills?: {
+                fid: number,
+                award: number,
+                is_like_food: boolean
+            }[],
+            total_bill?: number // 结账金额
         }>
     }
 
@@ -464,6 +500,32 @@ declare namespace Server {
     }
 
     /**
+     * 学习菜品
+     */
+    module food_learn {
+        type request = {
+            fid: number
+        }
+
+        type response = BaseResponse<{
+            money: number
+            countdown: number
+        }>
+    }
+
+    /**
+     * 取菜品
+     */
+    module food_take {
+        type request = {
+            fid: number
+        }
+
+        type response = BaseResponse<{
+        }>
+    }
+
+    /**
      * 顾客撸菜
      */
     module guest_cook {
@@ -547,7 +609,8 @@ declare namespace Server {
             current_food?: eating_food
             story_index?: number
             money: number,
-            intimacy: number
+            intimacy: number,
+            is_like_food?: boolean
         }>
     }
 
@@ -576,7 +639,45 @@ declare namespace Server {
 
         type response = BaseResponse<{
             stamina: number, // 全量
-            incr_stamina: number
+            incr_stamina: number,
+            countdown?: number
+        }>
+    }
+
+    /**
+     * 设置体力值
+     */
+    module user_set_stamina {
+        type request = {
+            stamina: number // 设置的数据 
+        }
+
+        type response = BaseResponse<{
+        }>
+    }
+
+    /**
+     * 获取money
+     */
+    module user_get_money {
+        interface request extends BaseRequest {
+        }
+
+        type response = BaseResponse<{
+            money: number
+        }>
+    }
+
+    /**
+     * 获取money
+     */
+    module user_add_money {
+        interface request extends BaseRequest {
+            money: number
+        }
+
+        type response = BaseResponse<{
+            restMoney: number
         }>
     }
 
@@ -635,7 +736,7 @@ declare namespace Server {
         }
         
         type response = BaseResponse<{
-            task_id?: number
+            task_id?: number,
         }>
     }
 
@@ -696,65 +797,6 @@ declare namespace Server {
     }
 
     /**
-     * 获取好友撸菜信息
-     */
-    module restaurant_get_food_helper {
-        type request = {
-            fid: number
-        }
-
-        type response = BaseResponse<{
-            helpers: string[]
-        }>
-    }
-
-    /**
-     * 帮忙加速
-     */
-    module restaurant_food_speed_up {
-        type request = {
-            rid: string,
-            fid: number
-        }
-
-        type response = BaseResponse<{
-            help_success: boolean
-        }>
-    }
-
-    /**
-     * 获取用户存档信息
-     */
-    module restaurant_get_archive {
-        type request = {
-            rid: number
-        }
-        type response = BaseResponse<{
-            archive: {
-                myGuestList?: {[id: number]: {
-                    intimacy: number, 
-                    guestId: number, 
-                    isLock: number, 
-                    isRead: number, 
-                    storyIndex: number
-                }},
-                myStamina?: { stamina?: number, updateTime?: number },
-                myOfflineInfo?: { isOffline?: boolean, leaveTime?: number },
-                myFurniture?: number[],
-                myPlacedFurniture?: { [pid: number]: number }
-                myFoodList?: {[fid: number]: {
-                    cooked: number,
-                    material: number,
-                    updateTime: number
-                }}
-                restaurantInfo?: { myMoney?: number, myGuestComeTimestamp?: number},
-                guideProgress?: { guideIndex?: number },
-                archive_time?: number
-            }
-        }>
-    }
-    
-    /**
      * 打工
      */
     module user_work {
@@ -774,16 +816,6 @@ declare namespace Server {
         }
 
         type response = BaseResponse<{}>
-    }
-
-    module user_archive {
-        interface request extends BaseRequest {
-            data: string
-        }
-
-        type response = BaseResponse<{
-            archive_timestamp?: time_stamp
-        }>
     }
 
     namespace Push {
