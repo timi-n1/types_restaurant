@@ -240,6 +240,7 @@ declare const enum AppCode {
     task_has_done = 8501,
     work_times_limited = 8600,
     work_food_counter_limited = 8601,
+    speed_up_myself = 8602,
 
     guest_server_error = 9000,
     fid_not_exist = 9001,
