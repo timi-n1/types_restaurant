@@ -837,6 +837,16 @@ declare namespace Server {
                 guest_ids: number[]
             }>
         }
+
+        /**
+         * 推送食物helper
+         */
+        module p_food_helper {
+            type response = BaseResponse<{
+                fid: number,
+                helpers: string[]
+            }>
+        }
     }
 }
 
@@ -1141,6 +1151,7 @@ declare const enum ServerInterface {
     food_buy = 'food_buy',
     food_list = 'food_list',
     food_supply = 'food_supply',
+    p_food_helper = 'p_food_helper',
     /**
      * 顾客系统模块 - guest
      */
